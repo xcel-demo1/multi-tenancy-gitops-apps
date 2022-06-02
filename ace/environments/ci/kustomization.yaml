@@ -1,6 +1,7 @@
 resources:
 - buildconfig/sh-tools.yaml
 # - configmaps/gitops-repo-configmap.yaml
+- certificates/prod-ref-ss-ca.yaml
 # - eventlisteners/ace-bar-event-listener.yaml
 # - eventlisteners/ace-integration-server.yaml
 - imagestreams/sh-tools.yaml
