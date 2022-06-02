@@ -4,7 +4,7 @@ resources:
 - certificates/prod-ref-ss-ca.yaml
 - certificates/prod-ref-devops.yaml
 # - eventlisteners/ace-bar-event-listener.yaml
-# - eventlisteners/ace-integration-server.yaml
+- eventlisteners/ace-integration-server.yaml
 - imagestreams/sh-tools.yaml
 - issuers/prod-ref-ss.yaml
 - issuers/prod-ref-ss-ca.yaml
