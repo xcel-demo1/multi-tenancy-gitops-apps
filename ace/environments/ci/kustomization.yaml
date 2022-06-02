@@ -35,6 +35,7 @@ resources:
 - secrets/gitops-repo-pk-secret-multi-tenancy-gitops-apps-at-github.yaml
 - secrets/gitops-repo-pk-secret-create-customer-at-github.yaml
 - secrets/ibm-entitlement-key-secret.yaml
+- secrets/gitops-webhook-token.yaml
 # - tasks/0-setup.yaml
 # - tasks/2-build-tag-push-ace-bar.yaml
 # - tasks/4-deploy.yaml
