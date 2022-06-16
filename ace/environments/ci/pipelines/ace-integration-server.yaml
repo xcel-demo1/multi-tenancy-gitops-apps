@@ -124,6 +124,23 @@ spec:
       workspaces:
       - name: workspace
         workspace: shared-workspace
+  
+    - name: run-test-project
+      params:
+      - name: is-source-directory
+        value: is-source
+      - name: is-application-name
+        value: $(tasks.resolve-props.results.is-application-name)
+      - name: is-test-project
+        value: $(tasks.resolve-props.results.is-test-project)
+      runAfter:
+        - build-bar
+      taskRef:
+        kind: Task
+        name: run-test-project
+      workspaces:
+      - name: workspace
+        workspace: shared-workspace
 
     - name: build-is-image
       params:
@@ -139,7 +156,7 @@ spec:
           value: $(workspaces.source.path)/bars
       runAfter:
         - clone-is-infra-repo
-        - build-bar
+        - run-test-project
       taskRef:
         kind: ClusterTask
         name: buildah

@@ -8,6 +8,7 @@ spec:
   results:
     - name: is-project
     - name: is-application-name
+    - name: is-test-project
     - name: is-release-name
     - name: is-configuration-keystore
     - name: is-configuration-truststore
@@ -56,6 +57,7 @@ spec:
 
         resolve_props '.integrationServer.project' $(results.is-project.path)
         resolve_prop '.integrationServer.applicationName' $(results.is-application-name.path)
+        resolve_prop '.integrationServer.testProject' $(results.is-test-project.path)
         resolve_prop '.integrationServer.releaseName' $(results.is-release-name.path)
         resolve_prop '.integrationServer.endpoint-path' $(results.endpoint-path.path)
         resolve_props '.integrationServer.configurations.keystore' $(results.is-configuration-keystore.path)

@@ -1,0 +1,40 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: run-test-project
+spec:
+  params:
+    - name: is-source-directory
+      type: string
+      description: directory where ACE source is located, relative to workspace
+    - name: is-application-name
+      type: string
+      description: name of the application
+    - name: is-test-project
+      type: string
+      description: name of the test project
+
+  steps:
+    - image: icr.io/appc-dev/ace-server:12.0.2.0-r2-20211115-123200-amd64
+      name: run-test-project
+      script: |
+        #!/usr/bin/env bash
+
+        rm -rf $(workspaces.workspace.path)/source
+        
+        cp -r $(workspaces.workspace.path)/$(params.is-source-directory) $(workspaces.workspace.path)/source
+
+        . /opt/ibm/ace-12/server/bin/mqsiprofile
+
+        ibmint package \
+          --input-path $(workspaces.workspace.path)/source \
+          --project $(params.is-test-project) \
+          --output-bar-file /tmp/$(params.is-test-project).bar
+
+        rm -rf /tmp/test-workdir
+        mqsicreateworkdir /tmp/test-workdir
+        mqsibar -w /tmp/test-workdir -a $(workspaces.workspace.path)/bars/$(params.is-application-name).bar
+        mqsibar -w /tmp/test-workdir -a /tmp/$(params.is-test-project).bar
+        IntegrationServer -w /tmp/test-workdir --test-project createcustomer_Test
+  workspaces:
+    - name: workspace
