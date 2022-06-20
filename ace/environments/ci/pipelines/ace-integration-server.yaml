@@ -125,14 +125,14 @@ spec:
       - name: workspace
         workspace: shared-workspace
   
-    - name: run-test-project
+    - name: run-tdd-test-project
       params:
       - name: is-source-directory
         value: is-source
       - name: is-application-name
         value: $(tasks.resolve-props.results.is-application-name)
       - name: is-test-project
-        value: $(tasks.resolve-props.results.is-test-project)
+        value: $(tasks.resolve-props.results.is-tdd-test-project)
       runAfter:
         - build-bar
       taskRef:
