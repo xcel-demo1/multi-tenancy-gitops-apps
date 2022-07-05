@@ -15,12 +15,12 @@ spec:
               value:
                 secretName: gitops-webhook-token
                 secretKey: webhook-token
-        - name: "CEL filter: only when coming from master branch"
-          ref:
-            name: cel
-          params:
-            - name: filter
-              value: body.ref == 'refs/heads/master'
+#         - name: "CEL filter: only when coming from master branch"
+#           ref:
+#             name: cel
+#           params:
+#             - name: filter
+#               value: body.ref == 'refs/heads/master'
       bindings:
         - ref: ace-integration-server
       template:
