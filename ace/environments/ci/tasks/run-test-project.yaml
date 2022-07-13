@@ -35,6 +35,10 @@ spec:
         mqsicreateworkdir /tmp/test-workdir
         mqsibar -w /tmp/test-workdir -a $(workspaces.workspace.path)/bars/$(params.is-application-name).bar
         mqsibar -w /tmp/test-workdir -a /tmp/$(params.is-test-project).bar
+        
+        # switch user trace on to enable code coverage 
+        sed -i "s/#userTrace: 'none'/userTrace: 'debug'/g" /tmp/test-workdir/server.conf.yaml
+        
         IntegrationServer -w /tmp/test-workdir --test-project $(params.is-test-project)
   workspaces:
     - name: workspace
